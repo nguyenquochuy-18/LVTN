@@ -16,6 +16,9 @@ use App\Repositories\Order\OrderRepository;
 use App\Repositories\Order\OrderRepositoryInterface;
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Product\ProductRepositoryInterface;
+use App\Repositories\Product\ProfileRepository;
+use App\Repositories\Profile\ProfileRepository as ProfileProfileRepository;
+use App\Repositories\Profile\ProfileRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -31,7 +34,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         //base
         $this->app->bind(BaseRepositoryInterface::class, BaseRepository::class);
-
+        $this->app->bind(ProfileRepositoryInterface::class, ProfileProfileRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);

@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\LoginRequest;
+use App\Repositories\Profile\ProfileRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 
 class AuthController extends Controller
 {
+
     public function formLogin()
     {
         if(auth('admin')->check()) {
@@ -27,7 +29,7 @@ class AuthController extends Controller
             $error = new MessageBag(['error' => 'email hoặc mật khẩu không đúng!!']);
             return redirect()->back()->withInput()->withErrors($error);
         }
-
+        session(['email'=>$request->input('email')]);
         return redirect()->route('admin.dashboard');
     }
 

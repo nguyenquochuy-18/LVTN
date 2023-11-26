@@ -67,7 +67,7 @@ class Product extends Model
         return $name ? $query->where('name', 'like', '%'.$name.'%') : null;
     }
 
-    public function scopeSortPrice($query, $type) 
+    public function scopeSortPrice($query, $type)
     {
         return $type ? $query->orderBy('price', $type) : null;
     }

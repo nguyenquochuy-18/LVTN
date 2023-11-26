@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,15 @@ Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logo
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin'], 'as' => 'admin.'], function () {
     Route::get('/', [DashBoardController::class, 'index'])->name('dashboard');
+
+    Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+        Route::get('/{id}', [ProfileController::class, 'index'])->name('index');
+        // Route::post('/', [ProductController::class, 'store'])->name('store');
+        // Route::get('/create', [ProductController::class, 'create'])->name('create');
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+        // Route::patch('/{id}', [ProductController::class, 'update'])->name('update');
+        // Route::delete('/{id}', [ProductController::class, 'delete'])->name('delete');
+    });
 
     Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
